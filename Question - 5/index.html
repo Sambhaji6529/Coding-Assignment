@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .slider-container {
+            width: 500px;
+            margin: auto;
+            position: relative;
+        }
+        img {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
+        }
+        .btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .prev {
+            background-color: #007bff;
+            color: white;
+        }
+        .next {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Animal Pictures</h1>
+    
+    <div class="slider-container">
+        <img id="slider" src="" alt="Animal Image">
+    </div>
+    
+    <button class="btn prev" onclick="prevImage()">Previous</button>
+    <button class="btn next" onclick="nextImage()">Next</button>
+
+    <script>
+        // Array of animal image URLs (Ensure these images exist in the same directory)
+        const images = [
+            "animals/image 1.jpg",
+            "animals/image 2.jpg",
+            "animals/image 3.jpg",
+            "animals/image 4.jpg",
+            "animals/image 5.jpg",
+            "animals/image 6.jpg",
+            "animals/image 7.jpg",
+            "animals/image 8.jpg",
+            "animals/image 9.jpg"
+        ];
+
+        let currentIndex = 0;
+        const slider = document.getElementById("slider");
+
+        // Function to update the image source
+        function updateImage() {
+            slider.style.opacity = 0;
+            setTimeout(() => {
+                slider.src = images[currentIndex];
+                slider.style.opacity = 1;
+            }, 300);
+        }
+
+        // Next Image
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        // Previous Image
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        // Initial Load
+        updateImage();
+    </script>
+
+</body>
+</html>
